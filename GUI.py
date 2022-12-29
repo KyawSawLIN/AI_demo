@@ -10,7 +10,7 @@ import numpy as np
 
 
 global a
-a= 1 #[[0.0 ,0.0 ]]
+a= 'd' #[[0.0 ,0.0 ]]
 global b
 b = 1
 global c
@@ -195,21 +195,88 @@ class VideoStream:
                  
          
          self.window.after(self.delay, self.update)
-         
-        
-              
-          
+       
      
       def mainloop(self):
          return self.window.mainloop()  
 
+
+
+class hand:
+ 
+    
+    def __init__(self, q4, com):
+        self.q4 = q4
+        self.com = com
+        self.count = 0
+        self.decide = 'p'
+        self.previous = 'p'
+        
+        
+        
+    def run_hand(self):
+      while 1: 
+        try:
+            self.decide = self.q4.get(block=False)
+                          
+        except Exception as e:
+            pass
+        
+        global a
+      
+        
+        if a != self.decide :   
+        
+         if (self.decide == 'r'):
+             self.mess = "rock"
+             print("this is rock")
+             self.x = self.mess.replace("\r\n", "\n")
+             self.com.write(bytes(self.x, 'utf-8'))
+             self.count = -1
+             time.sleep(1)
+             a = 'r'
+             
+             
+         elif (self.decide == 'p'):
+             self.mess = "paper"
+             print("this is paper")
+             self.x = self.mess.replace("\r\n", "\n")
+             self.com.write(bytes(self.x, 'utf-8'))
+             self.count = -1
+             time.sleep(1)
+             a = 'p'
+             
+             
+         elif (self.decide == 's'):
+             self.mess = "scissors"
+             print("this is scissor")
+             self.x = self.mess.replace("\r\n", "\n")
+             self.com.write(bytes(self.x, 'utf-8'))
+             self.count = -1
+             time.sleep(1)
+             a = 's'
+             
+         elif (self.decide == 'd' or self.decide == 'k'):
+             self.mess = "default"
+             print("this is default")
+             self.x = self.mess.replace("\r\n", "\n")
+             self.com.write(bytes(self.x, 'utf-8'))
+             self.count = -1
+             time.sleep(1)
+             a = 'd'          
+        
+         else:
+            print('breaking')
+            break  
+
      
      
 class AI:
-      def __init__(self,q1,q2,q3, model, data):
+      def __init__(self,q1,q2,q3,q4, model, data):
           self.q1= q1
           self.q2 = q2
           self.q3 = q3
+          self.q4 = q4
           self.model =  model
           self.data = data
           self.b = 1
@@ -250,18 +317,30 @@ class AI:
                    self.chooseImg = np.argsort(self.prediction)
                    self.result = self.chooseImg[0,3]
                    
-                   if self.result == 0:
-                       self.q2.put('r', block = False)
-                       self.q3.put(self.prediction, block = False)
-                   elif self.result == 1:
-                       self.q2.put('p', block = False)
-                       self.q3.put(self.prediction, block = False)
-                   elif self.result == 2:
-                       self.q2.put('s', block = False)
-                       self.q3.put(self.prediction, block = False)
-                   elif self.result == 3:
-                       self.q2.put('d', block = False)
-                       self.q3.put(self.prediction, block = False)
+                   global b
+                   
+                   if b != self.result:
+                   
+                       if self.result == 0:
+                           self.q2.put('p', block = False)
+                           self.q4.put('p', block = False)
+                           self.q3.put(self.prediction, block = False)
+                           b = 'p'
+                       elif self.result == 1:
+                           self.q2.put('s', block = False)
+                           self.q4.put('s', block = False)
+                           self.q3.put(self.prediction, block = False)
+                           b = 's'
+                       elif self.result == 2:
+                           self.q2.put('r', block = False)
+                           self.q4.put('r', block = False)
+                           self.q3.put(self.prediction, block = False)
+                           b = 'r'
+                       elif self.result == 3:
+                           self.q2.put('d', block = False)
+                           self.q4.put('d', block = False)
+                           self.q3.put(self.prediction, block = False)
+                           b = 'd'
                 
                    
                 except:
@@ -270,13 +349,14 @@ class AI:
            elif self.a == 0:
                    print("AI stop")
                    self.q2.put('k', block= False) # d for default
+                   self.q4.put('k', block= False)
                    time.sleep(3)
                 
            else :
+               self.q2.put('q',block=False)
+               self.q4.put('q',block=False)
                break
     
-
-
 
 
 class animal():
@@ -319,6 +399,10 @@ class MyVideoCapture:
          if self.vid.isOpened():
              self.vid.release()
    
+
+
+
+
 
 
 
