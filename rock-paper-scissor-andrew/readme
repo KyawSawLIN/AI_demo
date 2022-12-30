@@ -13,3 +13,36 @@ pip install tensorflow-io==0.25.0
 pip3 install pillow
 sudo apt-get install python3-pil.imagetk
 pip install pyserial
+
+We need to change the directories in the program to the directories that we put our download folder in.
+
+In startMain.py
+
+line 18
+model = load_model('/home/pi/Desktop\rock-paper-scissor-KYaw/model/keras_model.h5',compile=False)
+replace the directory that you put when downloading the project folder in place of /home/pi/Desktop\rock-paper-scissor-KYaw
+
+
+In gui.py
+
+line 165
+
+self.img = cv2.imread('/home/pi/Desktop/ksl/paper.png')  replace the directory that you put when downloading the project folder in place of '/home/pi/Desktop/ksl/paper.png'. Do the same thing for line 173 ,181 and 189.
+ 
+
+In gui.py, there are three objects. 
+VideoStream - mainly responsible for GUI interface
+Hand - to send serial data to arduino operated robot hand
+AI - get ai results from teachable machine model
+
+Those three objects are running simultaneously by a multiprocessing module. 
+And four queues are used to connect between these 3 objects. q1,q2,q3,q4. 
+
+q1 is for listening commands in VideoStream object (tkinter GUI) such as “start, stop, exit” and send appropriate messages to the AI object to start running, pause and exit from the GUI. 
+
+q2  and q3 is for sending the results of AI to the GUI interface (back to VideoStream) object. VideoStream receives the results and displays the AI results in the GUI interface. 
+
+q4 is for sending AI results from AI object to hand object via pyserial to operate the robot hand. 
+
+
+
