@@ -17,10 +17,11 @@ pip install pyserial
 
 run by typing python3 startMain.py
 
-
-
+######
+Things needed to be updated depending on the machine 
 We need to change the directories in the program to the directories that we put our download folder in. model 1 is the latest teachable machine
 AI model. 
+
 
 # In startMain.py
 
@@ -32,9 +33,10 @@ replace the directory that you put when downloading the project folder in place 
 # In gui.py
 
 line 165
-
 self.img = cv2.imread('/home/pi/Desktop/ksl/paper.png')  replace the directory that you put when downloading the project folder in place of '/home/pi/Desktop/ksl/paper.png'. Do the same thing for line 173 ,181 and 189.
  
+###### 
+brief explanation of working
 
 In gui.py, there are three objects. 
 VideoStream - mainly responsible for GUI interface
