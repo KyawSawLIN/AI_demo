@@ -15,6 +15,8 @@ sudo apt-get install python3-pil.imagetk
 pip install pyserial
 
 
+run by typing python3 startMain.py
+
 
 
 We need to change the directories in the program to the directories that we put our download folder in. model 1 is the latest teachable machine
