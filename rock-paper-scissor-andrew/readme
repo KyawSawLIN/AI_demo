@@ -1,5 +1,5 @@
 ######
-packages needed to install 
+packages needed to install
 run the following, it takes around 5 mins
 
 python3 -m venv .\
@@ -14,8 +14,8 @@ pip3 install pillow
 sudo apt-get install python3-pil.imagetk
 pip install pyserial
 
-
-run by typing python3 startMain.py
+HOW TO RUN
+run by typing - python3 startMain.py
 
 ######
 Things needed to be updated depending on the machine 
