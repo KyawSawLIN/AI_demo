@@ -20,14 +20,14 @@ pip install pyserial
 We need to change the directories in the program to the directories that we put our download folder in. model 1 is the latest teachable machine
 AI model. 
 
-#In startMain.py
+# In startMain.py
 
 line 18
 model = load_model('/home/pi/Desktop\rock-paper-scissor-KYaw/model1/keras_model.h5',compile=False)
 replace the directory that you put when downloading the project folder in place of /home/pi/Desktop\rock-paper-scissor-KYaw
 
 
-#In gui.py
+# In gui.py
 
 line 165
 
