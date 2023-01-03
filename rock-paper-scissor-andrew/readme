@@ -35,6 +35,8 @@ replace the directory that you put when downloading the project folder in place 
 line 165
 self.img = cv2.imread('/home/pi/Desktop/ksl/paper.png')  replace the directory that you put when downloading the project folder in place of '/home/pi/Desktop/ksl/paper.png'. Do the same thing for line 173 ,181 and 189.
  
+# In main.cpp - is the code for arduino to control robot hand. It accepts the serial data from raspberry pi and move servos according to the commands.
+
 ###### 
 brief explanation of working
 
