@@ -33,7 +33,7 @@ replace the directory that you put when downloading the project folder in place 
 # In gui.py
 
 line 165
-self.img = cv2.imread('/home/pi/Desktop/ksl/paper.png')  replace the directory that you put when downloading the project folder in place of '/home/pi/Desktop/ksl/paper.png'. Do the same (kind of) thing for line 129, 165, 173 ,181, 189 and 303.
+self.img = cv2.imread('/home/pi/Desktop/ksl/paper.png')  replace the directory that you put when downloading the project folder in place of '/home/pi/Desktop/ksl/paper.png'. Do the same (kind of) changing folder name thing for line 129, 165, 173 ,181, 189 and 303.
  
 # In main.cpp - is the code for arduino to control robot hand. It accepts the serial data from raspberry pi and move servos according to the commands.
 
