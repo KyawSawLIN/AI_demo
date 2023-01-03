@@ -14,16 +14,20 @@ pip3 install pillow
 sudo apt-get install python3-pil.imagetk
 pip install pyserial
 
-We need to change the directories in the program to the directories that we put our download folder in.
 
-In startMain.py
+
+
+We need to change the directories in the program to the directories that we put our download folder in. model 1 is the latest teachable machine
+AI model. 
+
+#In startMain.py
 
 line 18
-model = load_model('/home/pi/Desktop\rock-paper-scissor-KYaw/model/keras_model.h5',compile=False)
+model = load_model('/home/pi/Desktop\rock-paper-scissor-KYaw/model1/keras_model.h5',compile=False)
 replace the directory that you put when downloading the project folder in place of /home/pi/Desktop\rock-paper-scissor-KYaw
 
 
-In gui.py
+#In gui.py
 
 line 165
 
